@@ -12,8 +12,6 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-      with:
-        path: repo
     - name: Login to Azure
       uses: actions/login@v1
       with:
