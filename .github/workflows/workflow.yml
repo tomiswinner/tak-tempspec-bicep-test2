@@ -1,0 +1,31 @@
+name: MyWorkFlow
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        path: repo
+    - name: Login to Azure
+      uses: actions/login@v1
+      with:
+        client-id: ${{ secrets.AZURE_CLIENT_ID }}
+        tenant-id: ${{ secrets.AZURE_TENANT_SECRET }}
+        subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+    - name: Push ARM template to Template Spec
+      run: |
+        az ts create --name storageSpec \
+        --resource-group tak-tempspec-bicep-test \
+        --location "japaneast" \
+        --template-file repo/main.bicep \
+        --version 1.0.0 \
+        
+      
+
+   
