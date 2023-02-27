@@ -21,7 +21,7 @@ jobs:
         az ts create --name storageSpec \
         --resource-group tak-tempspec-bicep-test \
         --location "japaneast" \
-        --template-file repo/main.bicep \
+        --template-file ./main.bicep \
         --version 1.0.0 \
         
       
